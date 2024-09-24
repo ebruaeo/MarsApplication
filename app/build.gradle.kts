@@ -47,14 +47,16 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // ViewModel utilities for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
-    // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     // Lifecycles only (without ViewModel or LiveData)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     // Lifecycle utilities for Compose
     implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version")
     // Saved state module for ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
+    implementation( "com.squareup.retrofit2:converter-moshi:2.9.0")
 
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation(libs.androidx.core.ktx)
@@ -69,4 +71,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     implementation("com.google.android.material:material:1.11.0")
+
+    implementation("com.squareup.moshi:moshi:1.15.1")
+    implementation ("com.squareup.moshi:moshi-kotlin:1.15.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0")
 }
