@@ -7,13 +7,17 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.example.marsapplication.overview.OverviewFragment"
-        android:label="OverviewFragment" >
+        android:label="OverviewFragment">
         <action
-            android:id="@+id/action_overviewFragment_to_detailFragment"
+            android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.marsapplication.detail.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment">
+    <argument
+        android:name="selectedProperty"
+        app:argType="com.example.marsapplication.network.MarsProperty" />
+    </fragment>
 </navigation>

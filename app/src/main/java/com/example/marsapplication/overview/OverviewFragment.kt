@@ -7,7 +7,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.marsapplication.R
 import com.example.marsapplication.databinding.FragmentOverviewBinding
 import com.example.marsapplication.databinding.GridViewItemBinding
@@ -19,8 +21,10 @@ class OverviewFragment : Fragment() {
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding = FragmentOverviewBinding.inflate(inflater)
 
 
@@ -28,14 +32,22 @@ class OverviewFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
+            viewModel.displayPropertyDetails(it)
+        })
         setHasOptionsMenu(true)
+
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner) {
+            if (null != it) {
+                this.findNavController()
+                    .navigate(OverviewFragmentDirections.actionShowDetail(it))
+                viewModel.displayPropertyDetailsComplete()
+            }
+        }
+
         return binding.root
     }
 
-    /**
-     * Inflates the overflow menu that contains filtering options.
-     */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
